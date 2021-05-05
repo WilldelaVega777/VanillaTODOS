@@ -1,3 +1,45 @@
+:root
+{
+    --text-primary          : #543d54;
+    --text-secondary        : #444;
+
+    --back-primary          : #7b0065;
+
+    --back-gradient-from    : #D057A9;
+    --back-gradient-to      : #86CBCB;
+    --shadow                : rgba(0,0,0,0.47);
+    
+    --back-glass            : rgba(255, 255, 255, .1);
+    --border-glass          : rgba(255,255,255, 0.1);
+    --shadow-glass          : rgba(0,0,0,0.47);
+
+    --text-input            : rgba(255,255,255,0.8);
+    --back-input            : rgba(255,255,255,0.2);
+
+    --text-input-focus      : rgba(255,255,255,0.8);
+    --back-input-focus      : #7b0064dc;
+    --border-input-focus    : rgba(255, 255, 255, .8);
+    --border-input-color    : rgba(255, 255, 255, .8);
+    --shadow-input-focus    : rgba(255,255,255,0.27);
+
+    --text-button           : rgba(255, 255, 255, .7);
+    --border-button         : #7b0064dc;
+    --background-button     : #7b0064dc;
+    --shadow-button         : rgba(0,0,0,0.27);
+
+    --text-button-hover     : rgba(255, 255, 255, .8);
+    --back-button-hover     : #7b0064dc;
+    --border-button-hover   : rgba(255, 255, 255, .8);
+
+    --back-button-active    : #7b0064dc;
+    --border-button-active  : rgba(255, 255, 255, 1.0);
+
+    --back-acrylic          : rgba(255, 255, 255, .1);
+
+    --text-form-error       : #7b0064dc;
+    --border-dialog-error   : #530043dc;
+}
+
 * {
     margin: 0px;
     padding: 0px;
@@ -15,9 +57,9 @@ body
 {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 11pt;
-    color: #444;
-    background: #D057A9;
-    background: linear-gradient(to bottom right, #D057A9, #86CBCB);
+    color: var(--text-secondary);
+    background: var(--back-primary);
+    background: linear-gradient(to bottom right, var(--back-gradient-from), var(--back-gradient-to));
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
@@ -25,24 +67,19 @@ body
 .glass
 {
     margin: 0 auto;
-    background-color: rgba(255, 255, 255, .1);
+    background-color: var(--back-glass);
     padding: 15px;
     border-radius: 18px;
-    border: 4px solid rgba(255,255,255, 0.1);
-    box-shadow: -8px 10px 30px -8px rgba(0,0,0,0.47);
+    border: 4px solid var(--glass-border);
+    box-shadow: -8px 10px 30px -8px var(--shadow-glass);
 }
 
 .acrylic
 {
-  /* Parent background + Gaussian blur */
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
-
-  /* Exclusion blend */
   background-blend-mode: exclusion;
-
-  /* Color/tint overlay + Opacity */
-  background: rgba(255, 255, 255, .1);
+  background: var(--back-acrylic);
 }
 
 #header
@@ -76,14 +113,14 @@ div#header > ul#appName> li#Title
     font-weight: bold;
     font-size: 20pt;
     word-spacing: -.18em;
-    color: #7b0065;
+    color: var(--back-primary);
 }
 
 #subTitle
 {
     margin-top: 10px;
     font-size: 10pt;
-    color: #543d54
+    color: var(--text-secondary);
 }
 
 ul.menu
@@ -109,12 +146,12 @@ ul.menu > li > a
 {
     text-decoration: none;
     font-weight: bold;
-    color: #543d54;
+    color: var(--text-primary);
 }
 
 ul.menu > li > a:hover
 {
-    color: #7b0065;
+    color: var(back-primary);
     cursor: pointer;
 }
 
@@ -146,14 +183,14 @@ ul.menu > li > a:hover
 h1.view-title
 {
     text-align: center;
-    color: #7b0065;
+    color: var(--back-primary);
     margin-top: 15px;
     margin-bottom: 15px;
 }
 
 hr
 {
-    border-color: #7b0065;
+    border-color: var(--back-primary);
 }
 
 .view-form
@@ -164,7 +201,7 @@ hr
 label
 {
     font-weight: bold;
-    color: #543d54;
+    color: var(--text-primary);
 }
 
 input
@@ -173,20 +210,20 @@ input
     width: 100%;
     padding: 8px 8px;
     font-size: 14pt;
-    color: #543d54;
+    color: var(--text-primary);
     border: none;
     border-radius: 8px;
     box-sizing: border-box;
-    background-color: rgba(255,255,255,0.2)
+    background-color: var(--back-input);
 }
 
 input:focus-visible
 {
     outline: none;
-    background-color: #7b0064dc;
-    border: 3px solid rgba(255, 255, 255, .8);
-    color: rgba(255, 255, 255, .8);
-    box-shadow: -8px 10px 30px -8px rgba(0,0,0,0.27);
+    background-color: var(--back-input-focus);
+    border: 3px solid var(--border-input-focus);
+    color: var(--text-input-focus);
+    box-shadow: -8px 10px 30px -8px var(--shadow-input-focus);
 }
 
 .todos-form-control
@@ -204,14 +241,9 @@ input:focus-visible
 {
     width: 25px;
     height: 25px;
-    background-color: rgba(255,255,255,0.2);
+    background-color: var(--back-input);
     margin-left: 4px;
     opacity: .2 !important;
-}
-
-.todos-checkbox:focus-visible
-{
-    outline: 3px solid #7b0064dc;
 }
 
 .todos-checkbox-label
@@ -223,7 +255,7 @@ input:focus-visible
 .todos-checkbox-label:hover
 {
     cursor: pointer;
-    color: #7b0064dc;
+    color: var(--back-input-focus);
 }
 
 .todos-bottom-buttons-container
@@ -233,30 +265,30 @@ input:focus-visible
 
 .todos-button
 {
-    background-color: rgba(255, 255, 255, .3);
-    border: 3px solid #7b0064dc;
-    color: #7b0064dc;
+    background-color: var(--background-button);
+    border: 3px solid var(--border-button);
+    color: var(--text-button);
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
     border-radius: 8px;
-    box-shadow: -8px 10px 30px -8px rgba(0,0,0,0.27);
+    box-shadow: -8px 10px 30px -8px var(--shadow-button);
     cursor: pointer;
 }
 
 .todos-button:hover
 {
-    background-color: #7b0064dc;
-    border: 3px solid rgba(255, 255, 255, .8);
-    color: rgba(255, 255, 255, .8);
+    background-color: var(--back-button-hover);
+    border: 3px solid var(--border-button-hover);
+    color: var(--text-button-hover);
 }
 
 .todos-button:active
 {
-    background-color: #530043dc;
-    border: 3px solid rgba(255, 255, 255, 1.0);
+    background-color: var(--back-button-active);
+    border: 3px solid var(--border-button-active);
 }
 
 .reset
@@ -272,7 +304,7 @@ input:focus-visible
 .form-error
 {
     text-align: center;
-    color: #7b0064dc;
+    color: var(--text-form-error);
     margin-top: 15px;
     margin-bottom: 15px;
     display: none;
@@ -280,7 +312,7 @@ input:focus-visible
 
 .dialog-with-error
 {
-    border-color: #530043dc;
+    border-color: var(--border-dialog-error);
 }
 
 .error-emotion
@@ -300,11 +332,11 @@ input:focus-visible
 .footer-left
 {
     float: left;
-    color: #543d54;
+    color: var(--text-primary);
 }
 
 .footer-right
 {
     float: right;
-    color: #543d54;
+    color: var(--text-primary);
 }
