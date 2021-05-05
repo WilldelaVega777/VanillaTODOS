@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+
+        <!-- Meta Section -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+        <!-- StyleSheets Section -->
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+        />        
+        <link rel="stylesheet" href="./css/main.css">
+        <link rel="stylesheet" href="./css/user.css">
+        <link rel="stylesheet" href="./css/dashboard.css">
+
+        <!-- Scripts Section -->
+        <script type="text/javascript" src="./scripts/main.js" defer></script>
+        <script type="text/javascript" src="./scripts/user.js" defer></script>
+        <script type="text/javascript" src="./scripts/dashboard.js" defer></script>
+
+        <!-- Title Section -->
+        <title>Todo App</title>
+
+    </head>
+    <body>
+        <div id="header" class="acrylic glass">
+            <!-- Static: Fixed to Left -->
+            <ul id="appName">
+                <li id="Title">To do List</li>
+                <li id="subTitle">Because you need a ToDo list and you know it...</li>
+            </ul>
+
+            <!-- Dynamic: Fixed to Right -->
+            <ul id="tbMain" class="menu active">
+                <li><a href="#" id="cmdSignUp">Sign Up</a></li>
+                <li><a href="#" id="cmdLogIn">Log In</a></li>
+            </ul>
+
+            <ul id="tbDashboard" class="menu">
+                <li><a href="#" id="cmdLists">Lists</a></li>
+                <li><a href="#" id="cmdNewList">New List</a></li>
+                <li><a href="#" id="cmdEditList">Edit List</a></li>
+            </ul>
+        </div>
+
+        <div id="main">
+            
+            <!-- User Module UI -->
+            <div id="mUser">
+                
+                <!-- SignUp View -->
+                <div id="vSignUp" class="view acrylic glass">
+                    <!-- Header -->
+                    <div>
+                        <span id="cmdSignUpClose" class="cmdClose">
+                            ❌
+                        </span>
+                    </div>
+
+                    <!-- Content: Title -->
+                    <img id="imgHandshake" src="./assets/images/handshake.png" alt="handshake_image">
+                    <div><h1 class="view-title">Sign Up</h1></div>
+                    <hr/>
+
+                    <!-- View Form -->
+                    <div class="view-form">
+                        <form id=frmSignUp action="POST">
+
+                            <!-- First Name UI -->
+                            <p class="todos-form-control">
+                                <label for="txtSignUpFirstname">Enter your First Name: </label>
+                                <input id="txtSignUpFirstname" type="text" autocomplete="off"/>
+                            </p>
+                            <!-- First Name Errors -->
+                            <div id="signUpFirstnameError-noFirstname" class="form-error">
+                                <span class="error-emotion">😔</span> Don't you have a name?...
+                            </div>            
+                            
+                            <!-- Last Name UI -->
+                            <p class="todos-form-control">
+                                <label for="txtSignUpLastname">Enter your Last Name: </label>
+                                <input id="txtSignUpLastname" type="text"/>
+                            </p>
+                            <!-- Last Name Errors -->
+                            <div id="signUpLastnameError-noLastname" class="form-error">
+                                <span class="error-emotion">🤯</span> Don't you have a Last Name?...
+                            </div>
+
+                            <!-- Email UI -->
+                            <p class="todos-form-control">
+                                <label for="txtSignUpEmail">Enter your Email: </label>
+                                <input id="txtSignUpEmail" type="email"/>
+                            </p>
+                            <!-- Email Errors -->
+                            <div id="signUpEmailError-noEmail" class="form-error">
+                                <span class="error-emotion">😭</span> Don't you have an email?...
+                            </div>
+                            <div id="signUpEmailError-badFormat" class="form-error">
+                                <span class="error-emotion">😒</span> That dosen't sound like a valid email?...
+                            </div>                            
+
+                            <!-- Username UI -->
+                            <p class="todos-form-control">
+                                <label for="txtSignUpUsername">Select a Username: </label>
+                                <input id="txtSignUpUsername" type="text" autocomplete="off"/>
+                            </p>
+                            <!-- Username Errors -->
+                            <div id="signUpUsernameError-noUsername" class="form-error">
+                                <span class="error-emotion">😔</span> Don't you have a name?...
+                            </div>
+                            <div id="signUpUsernameError-userExists" class="form-error">
+                                <span class="error-emotion">😔</span> Sorry, Username exists...
+                            </div>                            
+                            
+                            <!-- Password UI -->
+                            <p class="todos-form-control">
+                                <label for="txtSignUpPassword">Create a Secure Password: </label>
+                                <input id="txtSignUpPassword" type="password"/>
+                            </p>
+                            <!-- Password Errors -->
+                            <div id="signUpPasswordError-noPassword" class="form-error">
+                                <span class="error-emotion">👿</span> That password is EASY to break..
+                            </div>
+                            <div id="signUpPasswordError-weakPassword" class="form-error">
+                                <span class="error-emotion">👿</span> That password is EASY to break..
+                            </div>
+
+                            <!-- Terms and Conditions UI -->
+                            <div class="checkbox-container">
+                                <input id="chkSignUpTermsAndConditions" class="todos-checkbox" type="checkbox">
+                                <label class="todos-checkbox-label" for="chkSignUpTermsAndConditions">I Agree to the Terms of Use</label>
+                            </div>
+                            <!-- Terms and Conditions Errors -->
+                            <div id="signUpTermsAndConditionsError" class="form-error">
+                                <span class="error-emotion">😭</span> We need you to accept our terms.
+                            </div>
+                            
+                            <!-- Control Button Bar -->
+                            <div class="todos-bottom-buttons-container">
+                                <button class="todos-button reset">Reset</button>
+                                <button class="todos-button submit">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+                <!-- Login View -->
+                <div id="vLogIn" class="view acrylic glass">
+                    <!-- Header -->
+                    <div>
+                        <span id="cmdLogInClose" class="cmdClose">
+                            ❌
+                        </span>
+                    </div>
+
+                    <!-- Content: Title -->
+                    <img id="imgLock" src="./assets/images/lock.png" alt="lock_image">
+                    <div><h1 class="view-title">Log In</h1></div>
+                    <hr/>
+                    <!-- View Form -->
+                    <div class="view-form">
+                        <form id=frmLogin action="POST">
+                            
+                            <!-- Username UI -->
+                            <p class="todos-form-control">
+                                <label for="txtLoginUsername">Enter your Username: </label>
+                                <input id="txtLoginUsername" type="text" autocomplete="off"/>
+                            </p>
+                            <!-- Username Errors -->
+                            <div id="loginUsernameError-noUsername" class="form-error">
+                                <span class="error-emotion">🤫</span> Don't you have a name?...
+                            </div>
+                            <div id="loginUsernameError-userExists" class="form-error">
+                                <span class="error-emotion">🤐</span> Sorry, Username exists...
+                            </div>                            
+
+                            <!-- Password UI -->
+                            <p class="todos-form-control">
+                                <label for="txtLoginPassword">Enter your Password: </label>
+                                <input id="txtLoginPassword" type="password"/>
+                            </p>
+                            <!-- Password Errors -->
+                            <div id="loginPasswordError-noPassword" class="form-error">
+                                <span class="error-emotion">👿</span> That password is EASY to break..
+                            </div>
+                            <div id="loginPasswordError-weakPassword" class="form-error">
+                                <span class="error-emotion">👿</span> That password is EASY to break..
+                            </div>
+
+                            <!-- Control Button Bar -->
+                            <div class="todos-bottom-buttons-container">
+                                <button class="todos-button reset">Reset</button>
+                                <button class="todos-button submit">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Dashboard Module UI -->
+            <div id="mDashboard">
+                
+                <!-- Lists View -->
+                <div id="vLists" class="view acrylic glass">
+                    <!-- Header -->
+                    <div>
+                        <span id="cmdListsClose" class="cmdClose">
+                            ❌
+                        </span>
+                    </div>
+
+                    <!-- Content -->
+
+
+                </div>
+
+
+                <!-- Add List View -->
+                <div id="vNewList" class="view acrylic glass">
+                    <!-- Header -->
+                    <div>
+                        <span id="cmdNewListClose" class="cmdClose">
+                            ❌
+                        </span>
+                    </div>
+
+                    <!-- Content -->
+
+
+                </div>
+
+
+                <!-- Edit List View -->
+                <div id="vEditList" class="view acrylic glass">
+                    <!-- Header -->
+                    <div>
+                        <span id="cmdEditListClose" class="cmdClose">
+                            ❌
+                        </span>
+                    </div>
+
+                    <!-- Content-->
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="footer" class="acrylic glass">
+            <span class="footer-left">©️ 2021 MIT License. Project 1 for ES6 Pirple Course by Will de la Vega.</span>
+            <span class="footer-right">https://willdelavega.com/portfolio</span>
+        </div>
+    </body>
+</html>
