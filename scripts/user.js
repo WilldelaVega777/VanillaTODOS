@@ -39,12 +39,14 @@ function setSignupFormListener()
         // Save User Data:
         const controls = e.target.elements;
         const user = {};
-        
+        let controlKey;
+
         for (control of controls)
         {
             if (control.id.substr(0,3) === 'txt')
             {
-                user[control.id] = control.value;
+                controlKey = getKeyFromControl(e.target.id, control.id);
+                user[controlKey] = control.value;
             }
         }
 
@@ -66,12 +68,14 @@ function setLoginFormListener()
 
         const controls = e.target.elements;
         const credentials = {};
-        
+        let controlKey;
+
         for (control of controls)
         {
             if (control.id.substr(0,3) === 'txt')
             {
-                credentials[control.id] = control.value;
+                controlKey = getKeyFromControl(e.target.id, control.id);
+                credentials[controlKey] = control.value;
             }
         }
 
@@ -108,6 +112,7 @@ function getUser(userName)
 //----------------------------------------------------------------------------------
 function createUser(userObject)
 {
+    userObject.password = new Hashes.MD5().hex(userObject.password);
     allUsers.push(
         {
             user: userObject,
@@ -121,6 +126,7 @@ function createUser(userObject)
 //----------------------------------------------------------------------------------
 function loginUserWith(credentials)
 {
+    credentials.password = new Hashes.MD5().hex(credentials.password);
     return allUsers.find(account => 
         ((account.user.email === credentials.email) &&
          (account.user.password === credentials.password))
@@ -142,6 +148,16 @@ function closeUserView(viewName)
         openView = '';
     }, 700);
 }
+
+//----------------------------------------------------------------------------------
+function getKeyFromControl(formName, controlName)
+{
+    const prefix = (controlName.substr(formName.length,1)).toLowerCase();
+    const body = controlName.substring(formName.length + 1);
+    const retVal = (prefix + body);
+    return retVal;
+}
+
 
 //----------------------------------------------------------------------------------
 function openDashboard()
