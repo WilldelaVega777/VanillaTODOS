@@ -1,13 +1,26 @@
 //-----------------------------------------------------------------
+// Globals
+//-----------------------------------------------------------------
+var allUsers;
+var openView = '';
+
+//-----------------------------------------------------------------
 // Main App Event Handler
 //-----------------------------------------------------------------
 window.addEventListener('load', () => {
+    //-------------------------------------------------------------
+    // Check or create the Users Array in Local Storage
+    //-------------------------------------------------------------
+    allUsers = JSON.parse(localStorage.getItem('todoAppUsers'));
+    if (!allUsers)
+    {
+        localStorage.setItem('todoAppUsers', JSON.stringify([]));
+        allUsers = [];
+    }
 
     //-------------------------------------------------------------
     // Set View UI Infrastructure: Automatic Event Handlers
     //-------------------------------------------------------------
-    let openView = '';
-
     const views = [
         'vSignUp',
         'vLogIn',
@@ -17,7 +30,7 @@ window.addEventListener('load', () => {
     ];
 
     views.forEach(view => {
-        const openButton  = `cmd${view.substr(1)}`; 
+        const openButton  = `cmd${view.substr(1)}`;
         const closeButton = `cmd${view.substr(1)}Close`;
         
         const thisView = document.getElementById(view);
@@ -29,6 +42,17 @@ window.addEventListener('load', () => {
     
             if (openView === '')
             {
+                // Reset Forms
+                if (view === 'vSignUp')
+                {
+                    document.getElementById('frmSignUp').reset();
+                }
+                else if (view === 'vLogIn')
+                {
+                    document.getElementById('frmLogIn').reset();
+                }
+
+                // Open Requested View
                 thisView.style.display = 'flex';
                 thisView.classList.add('animate__animated', 'animate__flipInY');
                 openView = view;
@@ -56,9 +80,7 @@ window.addEventListener('load', () => {
     //-------------------------------------------------------------
     // Enable Views Functionality
     //-------------------------------------------------------------
+    setSignupFormListener();
     setLoginFormListener();
-
-
-
-    
+ 
 });

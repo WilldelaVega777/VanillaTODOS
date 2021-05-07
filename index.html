@@ -18,8 +18,8 @@
         <link rel="stylesheet" href="./css/dashboard.css">
 
         <!-- Scripts Section -->
-        <script type="text/javascript" src="./scripts/main.js" defer></script>
-        <script type="text/javascript" src="./scripts/user.js" defer></script>
+        <script type="text/javascript" src="./scripts/main.js"      defer></script>
+        <script type="text/javascript" src="./scripts/user.js"      defer></script>
         <script type="text/javascript" src="./scripts/dashboard.js" defer></script>
 
         <!-- Title Section -->
@@ -53,96 +53,127 @@
             <div id="mUser">
                 
                 <!-- SignUp View -->
-                <div id="vSignUp" class="view acrylic glass">
+                <div id="vSignUp" 
+                     class="view acrylic glass"
+                >
                     <!-- Header -->
                     <div>
-                        <span id="cmdSignUpClose" class="cmdClose">
+                        <span id="cmdSignUpClose" 
+                              class="cmdClose"
+                        >
                             ❌
                         </span>
                     </div>
 
                     <!-- Content: Title -->
-                    <img id="imgHandshake" src="./assets/images/handshake.png" alt="handshake_image">
-                    <div><h1 class="view-title">Sign Up</h1></div>
+                    <img id="imgHandshake" 
+                         src="./assets/images/handshake.png" 
+                         alt="handshake_image"
+                    >
+                    <div>
+                        <h1 class="view-title">
+                            Sign Up
+                        </h1>
+                    </div>
+                    
                     <hr/>
 
                     <!-- View Form -->
                     <div class="view-form">
-                        <form id=frmSignUp action="POST">
+                        <form id=frmSignUp 
+                              action="POST"
+                        >
 
                             <!-- First Name UI -->
                             <p class="todos-form-control">
-                                <label for="txtSignUpFirstname">Enter your First Name: </label>
-                                <input id="txtSignUpFirstname" type="text" autocomplete="off"/>
-                            </p>
-                            <!-- First Name Errors -->
-                            <div id="signUpFirstnameError-noFirstname" class="form-error">
-                                <span class="error-emotion">😔</span> Don't you have a name?...
-                            </div>            
+                                <label for="txtSignUpFirstname">
+                                    Enter your First Name: 
+                                </label>
+                                <input id="txtSignUpFirstname" 
+                                       type="text" 
+                                       required 
+                                       maxlength="30"
+                                />
+                            </p>          
                             
                             <!-- Last Name UI -->
                             <p class="todos-form-control">
-                                <label for="txtSignUpLastname">Enter your Last Name: </label>
-                                <input id="txtSignUpLastname" type="text"/>
+                                <label for="txtSignUpLastname">
+                                    Enter your Last Name: 
+                                </label>
+                                <input id="txtSignUpLastname" 
+                                       type="text" 
+                                       required 
+                                       maxlength="30"
+                                />
                             </p>
-                            <!-- Last Name Errors -->
-                            <div id="signUpLastnameError-noLastname" class="form-error">
-                                <span class="error-emotion">🤯</span> Don't you have a Last Name?...
-                            </div>
 
                             <!-- Email UI -->
                             <p class="todos-form-control">
-                                <label for="txtSignUpEmail">Enter your Email: </label>
-                                <input id="txtSignUpEmail" type="email"/>
-                            </p>
-                            <!-- Email Errors -->
-                            <div id="signUpEmailError-noEmail" class="form-error">
-                                <span class="error-emotion">😭</span> Don't you have an email?...
-                            </div>
-                            <div id="signUpEmailError-badFormat" class="form-error">
-                                <span class="error-emotion">😒</span> That dosen't sound like a valid email?...
-                            </div>                            
+                                <label for="txtSignUpEmail">
+                                    Enter your Email:
+                                </label>
+                                <input id="txtSignUpEmail" 
+                                       type="email" 
+                                       required 
+                                       maxlength="70"
+                                />
+                            </p>                         
 
                             <!-- Username UI -->
                             <p class="todos-form-control">
-                                <label for="txtSignUpUsername">Select a Username: </label>
-                                <input id="txtSignUpUsername" type="text" autocomplete="off"/>
-                            </p>
-                            <!-- Username Errors -->
-                            <div id="signUpUsernameError-noUsername" class="form-error">
-                                <span class="error-emotion">😔</span> Don't you have a name?...
-                            </div>
-                            <div id="signUpUsernameError-userExists" class="form-error">
-                                <span class="error-emotion">😔</span> Sorry, Username exists...
-                            </div>                            
+                                <label for="txtSignUpUsername">
+                                    Select a Username: 
+                                </label>
+                                <input id="txtSignUpUsername" 
+                                       type="text" 
+                                       required 
+                                       maxlength="20"
+                                />
+                            </p>                          
                             
                             <!-- Password UI -->
                             <p class="todos-form-control">
-                                <label for="txtSignUpPassword">Create a Secure Password: </label>
-                                <input id="txtSignUpPassword" type="password"/>
+                                <label for="txtSignUpPassword">
+                                    Create a Secure Password:
+                                </label>
+                                <input id="txtSignUpPassword" 
+                                       type="password" 
+                                       required 
+                                       maxlength="30"
+                                />
                             </p>
-                            <!-- Password Errors -->
-                            <div id="signUpPasswordError-noPassword" class="form-error">
-                                <span class="error-emotion">👿</span> That password is EASY to break..
-                            </div>
-                            <div id="signUpPasswordError-weakPassword" class="form-error">
-                                <span class="error-emotion">👿</span> That password is EASY to break..
-                            </div>
 
                             <!-- Terms and Conditions UI -->
                             <div class="checkbox-container">
-                                <input id="chkSignUpTermsAndConditions" class="todos-checkbox" type="checkbox">
-                                <label class="todos-checkbox-label" for="chkSignUpTermsAndConditions">I Agree to the Terms of Use</label>
+                                <input id="chkSignUpTermsAndConditions" 
+                                       class="todos-checkbox" 
+                                       type="checkbox"
+                                >
+                                <label class="todos-checkbox-label" 
+                                       for="chkSignUpTermsAndConditions">
+                                       I Agree to the Terms of Use
+                                </label>
                             </div>
+
                             <!-- Terms and Conditions Errors -->
-                            <div id="signUpTermsAndConditionsError" class="form-error">
-                                <span class="error-emotion">😭</span> We need you to accept our terms.
+                            <div id="signUpTermsAndConditionsError" 
+                                 class="form-error"
+                            >
+                                <span class="error-emotion">
+                                    😭
+                                </span>
+                                We need you to accept our terms.
                             </div>
                             
                             <!-- Control Button Bar -->
                             <div class="todos-bottom-buttons-container">
-                                <button class="todos-button reset">Reset</button>
-                                <button class="todos-button submit">Submit</button>
+                                <button type="reset" class="todos-button reset">
+                                    Reset
+                                </button>
+                                <button type="submit" class="todos-button submit">
+                                    Submit
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -150,52 +181,79 @@
 
 
                 <!-- Login View -->
-                <div id="vLogIn" class="view acrylic glass">
+                <div id="vLogIn" 
+                     class="view acrylic glass"
+                >
                     <!-- Header -->
                     <div>
-                        <span id="cmdLogInClose" class="cmdClose">
+                        <span id="cmdLogInClose" 
+                              class="cmdClose"
+                        >
                             ❌
                         </span>
                     </div>
 
                     <!-- Content: Title -->
-                    <img id="imgLock" src="./assets/images/lock.png" alt="lock_image">
-                    <div><h1 class="view-title">Log In</h1></div>
+                    <img id="imgLock" 
+                         src="./assets/images/lock.png" 
+                         alt="lock_image"
+                    >
+                    <div>
+                        <h1 class="view-title">
+                            Log In
+                        </h1>
+                    </div>
+
                     <hr/>
+
                     <!-- View Form -->
                     <div class="view-form">
-                        <form id=frmLogin action="POST">
+                        <form id=frmLogIn 
+                              action="POST"
+                        >
                             
                             <!-- Username UI -->
                             <p class="todos-form-control">
-                                <label for="txtLoginUsername">Enter your Username: </label>
-                                <input id="txtLoginUsername" type="text" autocomplete="off"/>
-                            </p>
-                            <!-- Username Errors -->
-                            <div id="loginUsernameError-noUsername" class="form-error">
-                                <span class="error-emotion">🤫</span> Don't you have a name?...
-                            </div>
-                            <div id="loginUsernameError-userExists" class="form-error">
-                                <span class="error-emotion">🤐</span> Sorry, Username exists...
-                            </div>                            
+                                <label for="txtLoginEmail">
+                                    Enter your Email:
+                                </label>
+                                <input id="txtLoginEmail"
+                                       type="email" 
+                                       required 
+                                       maxlength="25"
+                                />
+                            </p>                     
 
                             <!-- Password UI -->
                             <p class="todos-form-control">
-                                <label for="txtLoginPassword">Enter your Password: </label>
-                                <input id="txtLoginPassword" type="password"/>
+                                <label for="txtLoginPassword">
+                                    Enter your Password: 
+                                </label>
+                                <input id="txtLoginPassword" 
+                                       type="password" 
+                                       required 
+                                       maxlength="30"
+                                />
                             </p>
-                            <!-- Password Errors -->
-                            <div id="loginPasswordError-noPassword" class="form-error">
-                                <span class="error-emotion">👿</span> That password is EASY to break..
-                            </div>
-                            <div id="loginPasswordError-weakPassword" class="form-error">
-                                <span class="error-emotion">👿</span> That password is EASY to break..
-                            </div>
+
+                            <!-- Terms and Conditions Errors -->
+                            <div id="logInPasswordError"
+                                 class="form-error"
+                            >
+                                <span class="error-emotion">
+                                    😒
+                                </span>
+                                Incorrect Password, try again
+                            </div>                            
 
                             <!-- Control Button Bar -->
                             <div class="todos-bottom-buttons-container">
-                                <button class="todos-button reset">Reset</button>
-                                <button class="todos-button submit">Submit</button>
+                                <button type="reset" class="todos-button reset">
+                                    Reset
+                                </button>
+                                <button type="submit" class="todos-button submit">
+                                    Submit
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -208,10 +266,14 @@
             <div id="mDashboard">
                 
                 <!-- Lists View -->
-                <div id="vLists" class="view acrylic glass">
+                <div id="vLists" 
+                     class="view acrylic glass"
+                >
                     <!-- Header -->
                     <div>
-                        <span id="cmdListsClose" class="cmdClose">
+                        <span id="cmdListsClose" 
+                              class="cmdClose"
+                        >
                             ❌
                         </span>
                     </div>
@@ -223,10 +285,14 @@
 
 
                 <!-- Add List View -->
-                <div id="vNewList" class="view acrylic glass">
+                <div id="vNewList" 
+                     class="view acrylic glass"
+                >
                     <!-- Header -->
                     <div>
-                        <span id="cmdNewListClose" class="cmdClose">
+                        <span id="cmdNewListClose" 
+                              class="cmdClose"
+                        >
                             ❌
                         </span>
                     </div>
@@ -238,10 +304,14 @@
 
 
                 <!-- Edit List View -->
-                <div id="vEditList" class="view acrylic glass">
+                <div id="vEditList" 
+                     class="view acrylic glass"
+                >
                     <!-- Header -->
                     <div>
-                        <span id="cmdEditListClose" class="cmdClose">
+                        <span id="cmdEditListClose" 
+                              class="cmdClose"
+                        >
                             ❌
                         </span>
                     </div>
@@ -255,8 +325,12 @@
         </div>
 
         <div id="footer" class="acrylic glass">
-            <span class="footer-left">©️ 2021 MIT License. Project 1 for ES6 Pirple Course by Will de la Vega.</span>
-            <span class="footer-right">https://willdelavega.com/portfolio</span>
+            <span class="footer-left">
+                ©️ 2021 MIT License. Project 1 for ES6 Pirple Course by Will de la Vega.
+            </span>
+            <span class="footer-right">
+                https://willdelavega.com/portfolio
+            </span>
         </div>
     </body>
 </html>

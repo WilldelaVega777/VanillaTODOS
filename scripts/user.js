@@ -1,13 +1,180 @@
-//-----------------------------------------------------------------
+//----------------------------------------------------------------------------------
 // Login UI Infrastructure
-//-----------------------------------------------------------------
+//----------------------------------------------------------------------------------
+function setSignupFormListener()
+{
+    // Check Username availability
+    document.getElementById('txtSignUpUsername').addEventListener('blur', (e) => {
+
+        const ctrlUserName = document.getElementById('txtSignUpUsername');
+        const attemptedUserName = ctrlUserName.value;
+
+        if (getUser(attemptedUserName))
+        {
+            ctrlUserName.setCustomValidity(
+                '😒  -That user is not available, could you please try another one??'
+            );
+        }
+    });
+
+    // Submit Form
+    const frmSignUp = document.getElementById('frmSignUp');
+    frmSignUp.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // Check Acceptance of Terms and Conditions
+        const acceptTerms = document.getElementById('chkSignUpTermsAndConditions').checked;
+
+        if (!acceptTerms)
+        {
+            console.log('Terms not accepted, no further actions taken...')
+            document.getElementById('signUpTermsAndConditionsError').style.display = 'block';
+            return false;
+        }
+        else
+        {
+            document.getElementById('signUpTermsAndConditionsError').style.display = 'none';
+        }
+
+        // Save User Data:
+        const controls = e.target.elements;
+        const user = {};
+        
+        for (control of controls)
+        {
+            if (control.id.substr(0,3) === 'txt')
+            {
+                user[control.id] = control.value;
+            }
+        }
+
+        createUser(user);
+        frmSignUp.reset();
+        closeUserView('vSignUp');
+        setTimeout(() => {
+            openDashboard();
+        }, 700);
+    });
+}
+
+//----------------------------------------------------------------------------------
 function setLoginFormListener()
 {
     const frmLogin = document.getElementById('frmLogin');
-    frmLogin.addEventListener('submit', (e) => {
+    frmLogIn.addEventListener('submit', (e) => {
         e.preventDefault();
 
+        const controls = e.target.elements;
+        const credentials = {};
         
+        for (control of controls)
+        {
+            if (control.id.substr(0,3) === 'txt')
+            {
+                credentials[control.id] = control.value;
+            }
+        }
 
+        if (!loginUserWith(credentials))
+        {
+            document.getElementById('logInPasswordError').style.display = 'block';
+            document.getElementById('txtLoginPassword').focus();
+            return false;
+        }
+        else
+        {
+            document.getElementById('logInPasswordError').style.display = 'none';            
+            frmLogIn.reset();
+            closeUserView('vLogIn');
+            setTimeout(() => {
+                openDashboard();
+            }, 700);            
+        }
     });
 }
+
+
+
+
+
+//----------------------------------------------------------------------------------
+// User Related Functions
+//----------------------------------------------------------------------------------
+function getUser(userName)
+{    
+    return allUsers.find((eachUser) => eachUser.user.username === userName)
+}
+
+//----------------------------------------------------------------------------------
+function createUser(userObject)
+{
+    allUsers.push(
+        {
+            user: userObject,
+            lists: []
+        }
+    );
+
+    localStorage.setItem('todoAppUsers', JSON.stringify(allUsers));
+}
+
+//----------------------------------------------------------------------------------
+function loginUserWith(credentials)
+{
+    return allUsers.find(account => 
+        ((account.user.email === credentials.email) &&
+         (account.user.password === credentials.password))
+    );
+}
+
+//----------------------------------------------------------------------------------
+function closeUserView(viewName)
+{
+    const thisView = document.getElementById(viewName);
+    thisView.classList.add('animate__flipOutY');
+    setTimeout(() => {
+        thisView.classList.remove(
+            'animate__animated', 
+            'animate__flipInY', 
+            'animate__flipOutY'
+        );
+        thisView.style.display = 'none';
+        openView = '';
+    }, 700);
+}
+
+//----------------------------------------------------------------------------------
+function openDashboard()
+{
+    // TODO: Continue Here...
+}
+
+
+/*
+//----------------------------------------------------------------------------------
+// Basic Local Storage DB Structure
+//----------------------------------------------------------------------------------
+const todoAppUsers = [
+    { 
+        user: {
+            firstname: '',
+            lastname: '',
+            email: '',
+            username: '',
+            password: ''
+        },
+
+        lists: [
+            {
+                name: 'daily',
+                createdAt: 
+                items: [
+                    'do 1',
+                    'do 2'
+                ]
+            }
+        ]
+    }
+];
+
+*/

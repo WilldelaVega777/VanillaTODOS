@@ -210,20 +210,35 @@ input
     width: 100%;
     padding: 8px 8px;
     font-size: 14pt;
-    color: var(--text-primary);
     border: none;
     border-radius: 8px;
     box-sizing: border-box;
-    background-color: var(--back-input);
+    color: var(--text-primary);
+    background-color: var(--back-input) !important;
 }
 
-input:focus-visible
+input:-webkit-autofill
+{
+    margin-top: 8px;
+    width: 100%;
+    padding: 8px 8px;
+    font-size: 14pt;
+    border: none;
+    border-radius: 8px;
+    box-sizing: border-box;
+
+}
+
+input:focus-visible, input:-webkit-autofill
 {
     outline: none;
-    background-color: var(--back-input-focus);
+    background-color: var(--back-input-focus) !important;
     border: 3px solid var(--border-input-focus);
     color: var(--text-input-focus);
     box-shadow: -8px 10px 30px -8px var(--shadow-input-focus);
+    
+    -webkit-text-fill-color: var(--text-input);
+    -webkit-box-shadow: 0 0 0px 1000px var(--back-input-focus) inset !important;
 }
 
 .todos-form-control
@@ -235,6 +250,7 @@ input:focus-visible
 {
     display: flex;
     align-items: center;
+    margin-top: -20px;
 }
 
 .todos-checkbox
@@ -260,7 +276,7 @@ input:focus-visible
 
 .todos-bottom-buttons-container
 {
-    padding-top: 25px;
+    padding-top: 20px;
 }
 
 .todos-button
@@ -305,8 +321,8 @@ input:focus-visible
 {
     text-align: center;
     color: var(--text-form-error);
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-top: 0px;
+    margin-bottom: -5px;
     display: none;
 }
 
@@ -324,9 +340,9 @@ input:focus-visible
 #footer
 {
     width: 95%;
-    padding: 12px !important;
-    min-height: 15px;
-    margin: -10px auto !important;
+    padding: 15px !important;
+    min-height: 18px;
+    margin: -5px auto !important;
 }
 
 .footer-left
