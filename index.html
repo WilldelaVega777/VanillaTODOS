@@ -42,9 +42,10 @@
             </ul>
 
             <ul id="tbDashboard" class="menu">
-                <li><a href="#" id="cmdLists">Lists</a></li>
-                <li><a href="#" id="cmdNewList">New List</a></li>
-                <li><a href="#" id="cmdEditList">Edit List</a></li>
+                <li><a href="#" id="cmdLists" class="hidden-option">Lists</a></li>
+                <li><a href="#" id="cmdNewList" class="hidden-option">New List</a></li>
+                <li><a href="#" id="cmdEditList" class="hidden-option">Edit List</a></li>
+                <li><a href="#" id="cmdLogout">Logout</a></li>
             </ul>
         </div>
 
@@ -279,9 +280,24 @@
                         </span>
                     </div>
 
-                    <!-- Content -->
+                    <!-- Content: Title -->
+                    <img id="imgTodoList" 
+                         src="./assets/images/todo-lists.png" 
+                         alt="todo-lists_image"
+                    >
+                    <div>
+                        <h1 class="view-title">
+                            Todo Lists
+                        </h1>
+                    </div>
+                    
+                    <hr/>
+                    <div class="todos-list scrollbar" id="todosList">
 
-
+                    </div>
+                    <button id="cmdListsNewList" type="button" class="todos-button">
+                        New TODO List
+                    </button>
                 </div>
 
 

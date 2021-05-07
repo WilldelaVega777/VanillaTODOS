@@ -87,6 +87,7 @@ function setLoginFormListener()
         }
         else
         {
+            currentAccount = getUserWithEmail(credentials.email);
             document.getElementById('logInPasswordError').style.display = 'none';            
             frmLogIn.reset();
             closeUserView('vLogIn');
@@ -99,15 +100,20 @@ function setLoginFormListener()
 
 
 
-
-
 //----------------------------------------------------------------------------------
 // User Related Functions
 //----------------------------------------------------------------------------------
 function getUser(userName)
 {    
-    return allUsers.find((eachUser) => eachUser.user.username === userName)
+    return allUsers.find((eachUser) => eachUser.user.username === userName);
 }
+
+//----------------------------------------------------------------------------------
+function getUserWithEmail(userEmail)
+{    
+    return allUsers.find((eachUser) => eachUser.user.email === userEmail);
+}
+
 
 //----------------------------------------------------------------------------------
 function createUser(userObject)
@@ -162,7 +168,23 @@ function getKeyFromControl(formName, controlName)
 //----------------------------------------------------------------------------------
 function openDashboard()
 {
-    // TODO: Continue Here...
+    // UI Variables
+    const userMenu = document.getElementById('tbMain');
+    const dashMenu = document.getElementById('tbDashboard');
+    const view = 'vLists';
+    const thisView = document.getElementById(view);
+
+    // Show Dashboard Menu
+    userMenu.classList.remove('active');
+    dashMenu.classList.add('active');
+
+
+    // Show Dashboard:
+    thisView.style.display = 'flex';
+    thisView.classList.add('animate__animated', 'animate__flipInY');
+    openView = view;
+
+    onOpenDashboard();
 }
 
 

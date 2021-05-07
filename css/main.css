@@ -38,6 +38,8 @@
 
     --text-form-error       : #7b0064dc;
     --border-dialog-error   : #530043dc;
+
+    --text-disabled         : rgba(255, 255, 255, .3);
 }
 
 * {
