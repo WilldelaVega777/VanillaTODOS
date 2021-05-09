@@ -5,7 +5,7 @@
 
     --back-primary          : #7b0065;
 
-    --back-gradient-from    : #D057A9;
+    --back-gradient-from    : #c2469d;
     --back-gradient-to      : #86CBCB;
     --shadow                : rgba(0,0,0,0.47);
     
@@ -40,6 +40,10 @@
     --border-dialog-error   : #530043dc;
 
     --text-disabled         : rgba(255, 255, 255, .3);
+
+    --text-todo-list-item   : #69015673;
+    --back-todo-list-item   : rgba(255,255,255,0.2);
+    --back-todo-list-button : transparent;
 }
 
 * {
@@ -130,6 +134,7 @@ ul.menu
     float: right;
     list-style-type: none;
     display: none;
+    margin-right: 5px;
 }
 
 ul.menu.active
@@ -351,10 +356,12 @@ input:focus-visible, input:-webkit-autofill
 {
     float: left;
     color: var(--text-primary);
+    padding-left: 7px;
 }
 
 .footer-right
 {
     float: right;
     color: var(--text-primary);
+    padding-right: 10px;
 }

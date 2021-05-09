@@ -21,8 +21,8 @@
     align-items: top center;
     align-content: center;
         
-    height: 600px;
-    width: 400px;
+    height: auto;
+    width: 600px;
 }
 
 #vEditList
@@ -62,13 +62,9 @@
     background-color: rgba(255,255,255,0.0);
 }
 
-.scrollbar
-{
-}
-
 #todosList::-webkit-scrollbar-track
 {
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 	background-color: rgba(255,255,255,0.3);
 }
 
@@ -83,5 +79,59 @@
 	background-color: #000000;
 }
 
+.list-item-container
+{
+    display: flex;
+    flex-direction: row;
+    align-content: flex-start;
+    width: 93%;
+    height: 30px;
+    padding: 10px;
+    background-color: var(--back-todo-list-item);
+    margin-bottom: 10px;
+    border-radius: 12px;
+}
 
+.list-item
+{
+    flex: 8;
+    font-weight: bold;
+    color: var(--text-todo-list-item);
+    margin-top: -4px;
+}
 
+.list-button
+{
+    flex: 1;
+    background-color: var(--back-todo-list-button);
+    max-width: 30px;
+    margin-right: 10px;
+    border-radius: 50%;
+    color: white;
+    font-size: 14pt;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+}
+
+.list-item-description 
+{
+    font-size: 8pt;
+    font-weight: normal;
+    color: var(--text-primary);
+}
+
+#imgCheckList
+{
+    height: 200px;
+    width: auto;
+    object-fit: contain;
+    margin-bottom: -0px;
+    margin-top: -0px;
+    filter: hue-rotate(200deg); 
+}
+
+#frmNewList
+{
+    margin-top: 20px;
+}

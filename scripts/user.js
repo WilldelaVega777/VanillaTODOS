@@ -205,6 +205,7 @@ const todoAppUsers = [
         lists: [
             {
                 name: 'daily',
+                description: '',
                 createdAt: 
                 items: [
                     'do 1',
