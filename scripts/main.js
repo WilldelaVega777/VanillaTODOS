@@ -1,9 +1,10 @@
 //-----------------------------------------------------------------
 // Globals
 //-----------------------------------------------------------------
-var allUsers;
-var currentAccount;
-var openView = '';
+var gAllUsers;
+var gCurrentAccount;
+var gCurrentList;
+var gOpenView = '';
 
 //-----------------------------------------------------------------
 // Main App Event Handler
@@ -12,11 +13,11 @@ window.addEventListener('load', () => {
     //-------------------------------------------------------------
     // Check or create the Users Array in Local Storage
     //-------------------------------------------------------------
-    allUsers = JSON.parse(localStorage.getItem('todoAppUsers'));
-    if (!allUsers)
+    gAllUsers = JSON.parse(localStorage.getItem('todoAppUsers'));
+    if (!gAllUsers)
     {
         localStorage.setItem('todoAppUsers', JSON.stringify([]));
-        allUsers = [];
+        gAllUsers = [];
     }
 
     //-------------------------------------------------------------
@@ -41,7 +42,7 @@ window.addEventListener('load', () => {
         thisOpenButton.addEventListener('click', (e) => {
             e.preventDefault();
     
-            if (openView === '')
+            if (gOpenView === '')
             {
                 // Reset Forms
                 if (view === 'vSignUp')
@@ -56,13 +57,13 @@ window.addEventListener('load', () => {
                 // Open Requested View
                 thisView.style.display = 'flex';
                 thisView.classList.add('animate__animated', 'animate__flipInY');
-                openView = view;
+                gOpenView = view;
             }
         });
 
         thisCloseButton.addEventListener('click', (e) => {
 
-            if (openView === view)
+            if (gOpenView === view)
             {
                 thisView.classList.add('animate__flipOutY');
                 setTimeout(() => {
@@ -72,7 +73,7 @@ window.addEventListener('load', () => {
                         'animate__flipOutY'
                     );
                     thisView.style.display = 'none';
-                    openView = '';
+                    gOpenView = '';
                 }, 700);
             }
         });

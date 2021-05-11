@@ -1,22 +1,43 @@
 function onOpenDashboard()
 {
+    //------------------------------------------------------------------------------
     // Dashboard UI Variables
-    const cmdLogout  = document.getElementById('cmdLogout');
-    const cmdNewList = document.getElementById('cmdListsNewList');
+    //------------------------------------------------------------------------------
+    const cmdLogout         = document.getElementById('cmdLogout');
+    const cmdNewList        = document.getElementById('cmdListsNewList');
+    const cmdNewListClose   = document.getElementById('cmdNewListClose');
+    const cmdEditListClose  = document.getElementById('cmdEditListClose');
+    const cmdAddNewTodoItem = document.getElementById('cmdAddNewTodoItem');
 
+    const frmEditList       = document.getElementById('frmEditList');
+
+    const todoItemsList     = document.getElementById('todoItemsList');
+
+    //------------------------------------------------------------------------------
+    // Dashboard Module Event Handlers:
+    //------------------------------------------------------------------------------
+    // Logout Button Event
     cmdLogout.addEventListener('click', (e) => {
         window.location.reload();
     });
 
+    //------------------------------------------------------------------------------
+    // New List Dialog Event Handlers:
+    //------------------------------------------------------------------------------
+    // New List: Open Button
+    //----------------------------------------------
     cmdNewList.addEventListener('click', (e) => {
         closeDashboardView('vLists');
         setTimeout(() => {
             openDashboardView('vNewList');
             const frmNewList = document.getElementById('frmNewList');
             frmNewList.reset();
-        }, 700);   
+        }, 700);
     });
 
+    //----------------------------------------------
+    // New List: Closing Button
+    //----------------------------------------------
     cmdNewListClose.addEventListener('click', (e) => {
         const frmNewList = document.getElementById('frmNewList');
         frmNewList.reset();
@@ -25,6 +46,9 @@ function onOpenDashboard()
         }, 700);
     });
 
+    //----------------------------------------------
+    // New List: Save List Button
+    //----------------------------------------------
     frmNewList.addEventListener('submit', (e) => {
         e.preventDefault();
 
@@ -62,23 +86,95 @@ function onOpenDashboard()
         }, 700);  
     });
 
+    //------------------------------------------------------------------------------
+    // Edit List Event Handlers
+    //------------------------------------------------------------------------------    
+    // Edit List: Closing Button
+    //----------------------------------------------
+    cmdEditListClose.addEventListener('click', (e) => {
+        const frmEditList = document.getElementById('frmEditList');
+        frmEditList.reset();
+        setTimeout(() => {
+            openDashboardView('vLists');
+        }, 700);
+    });
+
+    //----------------------------------------------
+    // Edit List: Reset Dialog
+    //----------------------------------------------
+    frmEditList.addEventListener('reset', (e) => {
+        frmEditList.reset();
+        todoItemsList.innerHTML = '';
+        closeDashboardView('vEditList');
+        setTimeout(() => {
+            openDashboardView('vLists');
+        }, 700);
+    });
+
+    //----------------------------------------------
+    // Edit List: Add Item
+    //----------------------------------------------
+    cmdAddNewTodoItem.addEventListener('click', (e) => {
+        if (!validateNewItem())
+        {
+            return;
+        }
+        let newId;
+        if (gCurrentList.items?.length > 0)
+        {
+            const orderedItems = gCurrentList.items.sort((listItemA, listItemB) => (listItemB.id - listItemA.id));
+            newId = (orderedItems[0].id + 1);
+        }
+        else
+        {
+            newId = 0;
+        }
+
+        gCurrentList.items.push({
+            id: newId,
+            createdAt: new Date(),
+            text: ''
+        });
+
+        renderTodoItems();
+    });
+
+    //----------------------------------------------
+    // Edit List: Save Items
+    //----------------------------------------------
+    frmEditList.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        localStorage.setItem('todoAppUsers', JSON.stringify(gAllUsers));
+        todoItemsList.innerHTML = '';
+        closeDashboardView('vEditList');
+        setTimeout(() => {
+            openDashboardView('vLists');
+        }, 700);
+
+    });
+
+
+    //------------------------------------------------------------------------------
+    // Default Initial Actions
+    //------------------------------------------------------------------------------
     // Render Existing Lists
     renderListNames();
-
 }
 
 
 //----------------------------------------------------------------------------------
-// Dashboard Functions
+// ToDo Lists View Related Functions
 //----------------------------------------------------------------------------------
 function renderListNames()
 {
-    const sortedLists = currentAccount.lists.sort((a, b) => a.createdAt - b.createdAt);
-    namesList = sortedLists.map(list => list.name);
-    if (namesList?.length === 0)
+    if (gCurrentAccount?.lists?.length === 0)
     {
         return;
     }
+
+    const sortedLists = gCurrentAccount.lists.sort((a, b) => a.createdAt - b.createdAt);
+    namesList = sortedLists.map(list => list.name);
 
     const listContainer = document.getElementById('todosList');
 
@@ -86,7 +182,7 @@ function renderListNames()
 
     let currentList;
     namesList.forEach((listName) => {
-        const currentList = currentAccount.lists.find(list => list.name === listName);
+        const currentList = gCurrentAccount.lists.find(list => list.name === listName);
 
         const listItemContainer = document.createElement('DIV');
         listItemContainer.classList.add('list-item-container');
@@ -99,25 +195,53 @@ function renderListNames()
         const cmdEdit   = document.createElement('DIV');
         cmdEdit.classList.add('list-button');
         cmdEdit.innerText = '✔️';
+        cmdEdit.title = 'Edit this List';
+        cmdEdit.addEventListener('click', (e) => {
+            
+            const actualList = gCurrentAccount.lists.filter(list => list.name === currentList.name);
+            if (actualList.length > 0)
+            {
+                gCurrentList = actualList[0];
+            }
+
+            closeDashboardView('vLists');
+            setTimeout(() => {
+                openDashboardView('vEditList');
+                renderList();
+                renderTodoItems();
+            }, 700);
+
+        });
 
         const cmdDelete = document.createElement('DIV');
         cmdDelete.classList.add('list-button');
         cmdDelete.innerText = '🗑️';
+        cmdDelete.title = 'Delete this List without warning!';
+        cmdDelete.addEventListener('click', (e) => {
+            const newLists = gCurrentAccount.lists.filter(list => list.name !== currentList.name);
+            gCurrentAccount.lists = newLists;
+            localStorage.setItem('todoAppUsers', JSON.stringify(gAllUsers));
+            renderListNames();
+        });
 
+        // Append Elements
         listItemContainer.appendChild(listItem);
         listItemContainer.appendChild(cmdEdit);
         listItemContainer.appendChild(cmdDelete);
 
+        // Append to DOM Element
         listContainer.appendChild(listItemContainer);
     });
 }
 
 
 //----------------------------------------------------------------------------------
+// New ToDo List View Related Functions
+//----------------------------------------------------------------------------------
 function validateTodoList(listName)
 {
     let retVal = true;
-    if (currentAccount.lists.find(list => list.name === listName))
+    if (gCurrentAccount.lists.find(list => list.name === listName))
     {
         retVal = false;
     }
@@ -130,10 +254,77 @@ function validateTodoList(listName)
 function saveList(todoList)
 {
     todoList['createdAt'] = new Date();
-    currentAccount.lists.push(todoList);
-    localStorage.setItem('todoAppUsers', JSON.stringify(allUsers));
+    todoList['items'] = [];
+    gCurrentAccount.lists.push(todoList);
+    localStorage.setItem('todoAppUsers', JSON.stringify(gAllUsers));
 }
 
+//----------------------------------------------------------------------------------
+// Edit ToDo List View Related Functions
+//----------------------------------------------------------------------------------
+function renderList()
+{
+    const txtEditListName = document.getElementById('txtEditListName');
+    txtEditListName.value = gCurrentList.name;
+}
+
+//----------------------------------------------------------------------------------
+function renderTodoItems()
+{
+    const listContainer = document.getElementById('todoItemsList');
+
+    listContainer.innerHTML = '';
+    
+    gCurrentList.items.forEach((listItem) => {
+        const listItemContainer = document.createElement('DIV');
+        listItemContainer.classList.add('list-todo-item-container');
+    
+        const listTodoItem  = document.createElement('INPUT');
+        listTodoItem.classList.add('list-item-input');
+        listTodoItem.value = `${listItem.text}`;
+        listTodoItem.addEventListener('change', (e) => {
+            listItem.text = e.target.value;
+        });
+        
+        const cmdDelete = document.createElement('DIV');
+        cmdDelete.classList.add('list-button');
+        cmdDelete.innerText = '🗑️';
+        cmdDelete.title = 'Delete this ToDo without warning!';
+        cmdDelete.addEventListener('click', (e) => {
+            const newItems = gCurrentList.items.filter(item => item.id !== listItem.id);
+            gCurrentList.items = newItems;
+            localStorage.setItem('todoAppUsers', JSON.stringify(gAllUsers));
+            renderTodoItems();
+        });
+    
+        // Append Elements
+        listItemContainer.appendChild(listTodoItem);
+        listItemContainer.appendChild(cmdDelete);
+    
+        // Append to DOM Element
+        listContainer.appendChild(listItemContainer);
+    });
+}
+
+//----------------------------------------------------------------------------------
+function validateNewItem()
+{
+    let retVal = true;
+
+    if (gCurrentList.items?.length > 0) 
+    {
+        const emptyTodo = gCurrentList.items.find(todo => todo.text === '');
+        if (emptyTodo)
+        {
+            retVal = false;
+        }
+    }
+
+    return retVal;
+}
+
+//----------------------------------------------------------------------------------
+// General Dashboard UI Functions
 //----------------------------------------------------------------------------------
 function closeDashboardView(viewName)
 {
@@ -146,7 +337,7 @@ function closeDashboardView(viewName)
             'animate__flipOutY'
         );
         thisView.style.display = 'none';
-        openView = '';
+        gOpenView = '';
     }, 700);
 }
 
@@ -159,9 +350,11 @@ function openDashboardView(viewName)
     // Show Dashboard:
     thisView.style.display = 'flex';
     thisView.classList.add('animate__animated', 'animate__flipInY');
-    openView = viewName;
+    gOpenView = viewName;
 }
 
+//----------------------------------------------------------------------------------
+// Utility Functions
 //----------------------------------------------------------------------------------
 function getKeyFromControl(formName, controlName)
 {
@@ -170,5 +363,3 @@ function getKeyFromControl(formName, controlName)
     const retVal = (prefix + body);
     return retVal;
 }
-
-

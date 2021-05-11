@@ -15,6 +15,10 @@ function setSignupFormListener()
                 '😒  -That user is not available, could you please try another one??'
             );
         }
+        else
+        {
+            ctrlUserName.setCustomValidity('');
+        }
     });
 
     // Submit Form
@@ -87,7 +91,7 @@ function setLoginFormListener()
         }
         else
         {
-            currentAccount = getUserWithEmail(credentials.email);
+            gCurrentAccount = getUserWithEmail(credentials.email);
             document.getElementById('logInPasswordError').style.display = 'none';            
             frmLogIn.reset();
             closeUserView('vLogIn');
@@ -105,13 +109,13 @@ function setLoginFormListener()
 //----------------------------------------------------------------------------------
 function getUser(userName)
 {    
-    return allUsers.find((eachUser) => eachUser.user.username === userName);
+    return gAllUsers.find((eachUser) => eachUser.user.username === userName);
 }
 
 //----------------------------------------------------------------------------------
 function getUserWithEmail(userEmail)
 {    
-    return allUsers.find((eachUser) => eachUser.user.email === userEmail);
+    return gAllUsers.find((eachUser) => eachUser.user.email === userEmail);
 }
 
 
@@ -119,21 +123,21 @@ function getUserWithEmail(userEmail)
 function createUser(userObject)
 {
     userObject.password = new Hashes.MD5().hex(userObject.password);
-    allUsers.push(
+    gAllUsers.push(
         {
             user: userObject,
             lists: []
         }
     );
 
-    localStorage.setItem('todoAppUsers', JSON.stringify(allUsers));
+    localStorage.setItem('todoAppUsers', JSON.stringify(gAllUsers));
 }
 
 //----------------------------------------------------------------------------------
 function loginUserWith(credentials)
 {
     credentials.password = new Hashes.MD5().hex(credentials.password);
-    return allUsers.find(account => 
+    return gAllUsers.find(account => 
         ((account.user.email === credentials.email) &&
          (account.user.password === credentials.password))
     );
@@ -151,7 +155,7 @@ function closeUserView(viewName)
             'animate__flipOutY'
         );
         thisView.style.display = 'none';
-        openView = '';
+        gOpenView = '';
     }, 700);
 }
 
@@ -182,7 +186,7 @@ function openDashboard()
     // Show Dashboard:
     thisView.style.display = 'flex';
     thisView.classList.add('animate__animated', 'animate__flipInY');
-    openView = view;
+    gOpenView = view;
 
     onOpenDashboard();
 }

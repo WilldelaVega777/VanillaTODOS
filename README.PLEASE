@@ -1,0 +1,25 @@
+Hi friends at Pirple,
+
+
+Sorry for taking a week in completing the project, this was a little crazy week and I have not been feeling fine 
+either.
+
+Please consider that while this is a feature complete app, the maintainability and scalability of the code is not
+ideal at all. With more time I would have used BEM for the CSS classes, I was at 50% when I realized I should have
+and it was going to be too much pain to change at that time. On the other hand I realize that this kind of 
+monolithic approach cannot scale much, I was checking some patterns for vanilla javascript programming like 
+MVC, the Observer pattern and the State pattern, but using them would require a major refactor of the code that
+would easily take another week. Using the RxJS library could mitigate the time required to refactor into these
+recommended patterns but again this project/app is for the course and I am not supposed to use any external 
+libraries other than the one for getting the passwords encrypted. 
+
+I look forward to continue the course and enter into more OOP practices so that my second project looks and feels
+more maintainable and scalable than this one.
+
+
+Thanks for your patience.
+
+kind regards.
+
+
+Will de la Vega.

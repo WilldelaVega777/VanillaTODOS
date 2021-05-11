@@ -44,6 +44,8 @@
     --text-todo-list-item   : #69015673;
     --back-todo-list-item   : rgba(255,255,255,0.2);
     --back-todo-list-button : transparent;
+
+    --text-todo-list-item   : #7b0064dc;
 }
 
 * {
