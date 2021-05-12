@@ -1,0 +1,26 @@
+//----------------------------------------------------------------------------------
+// Basic Local Storage DB Structure
+//----------------------------------------------------------------------------------
+const todoAppUsers = [
+    { 
+        user: {
+            firstname: '',
+            lastname: '',
+            email: '',
+            username: '',
+            password: ''
+        },
+
+        lists: [
+            {
+                name: 'daily',
+                description: '',
+                createdAt: 
+                items: [
+                    'do 1',
+                    'do 2'
+                ]
+            }
+        ]
+    }
+];

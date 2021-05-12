@@ -13,465 +13,68 @@
         <link rel="stylesheet"
               href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
         />        
-        <link rel="stylesheet" href="./css/main.css">
-        <link rel="stylesheet" href="./css/user.css">
-        <link rel="stylesheet" href="./css/dashboard.css">
+        <link rel="stylesheet" href="./css/main.css"/>
+        <link rel="stylesheet" href="./css/user.css"/>
+        <link rel="stylesheet" href="./css/dashboard.css"/>
 
-        <!-- Scripts Section -->
-        <script type="text/javascript" src="./scripts/hashes.min.js" defer></script>
-        <script type="text/javascript" src="./scripts/main.js"       defer></script>
-        <script type="text/javascript" src="./scripts/user.js"       defer></script>
-        <script type="text/javascript" src="./scripts/dashboard.js"  defer></script>
+        
+        <!-- Scripts Section: Libraries -->
+        <script type="text/javascript" src="./scripts/_lib/hashes.min.js" defer>
+        </script>
+        <script type="text/javascript" src="./scripts/_lib/custom-tag.js">
+        </script>
+        <script type="text/javascript" src="./scripts/_lib/user.js">
+        </script>
+        <script type="text/javascript" src="./scripts/_lib/dashboard.js">
+        </script>        
+
+        <!-- Scripts Section: Views -->
+        <script type="text/javascript" src="./scripts/views/signup.js" defer>
+        </script> 
+        <script type="text/javascript" src="./scripts/views/login.js" defer>
+        </script>
+        <script type="text/javascript" src="./scripts/views/lists.js" defer>
+        </script>
+        <script type="text/javascript" src="./scripts/views/new-list.js" defer>
+        </script>
+        <script type="text/javascript" src="./scripts/views/edit-list.js" defer>
+        </script>
+
+        <!-- Scripts Section: Components -->
+        <script type="text/javascript" src="./scripts/components/header.js" defer>
+        </script>
+        <script type="text/javascript" src="./scripts/components/footer.js" defer>
+        </script>
+
+        <!-- Scripts Section: Bootstrap -->
+        <script type="text/javascript" src="./scripts/main.js" defer>
+        </script>
+        
 
         <!-- Title Section -->
         <title>Todo App</title>
 
     </head>
     <body>
-        <div id="header" class="acrylic glass">
-            <!-- Static: Fixed to Left -->
-            <ul id="appName">
-                <li id="Title">To do List</li>
-                <li id="subTitle">Because you need a ToDo list and you know it...</li>
-            </ul>
-
-            <!-- Dynamic: Fixed to Right -->
-            <ul id="tbMain" class="menu active">
-                <li><a href="#" id="cmdSignUp">Sign Up</a></li>
-                <li><a href="#" id="cmdLogIn">Log In</a></li>
-            </ul>
-
-            <ul id="tbDashboard" class="menu">
-                <li><a href="#" id="cmdLists" class="hidden-option">Lists</a></li>
-                <li><a href="#" id="cmdNewList" class="hidden-option">New List</a></li>
-                <li><a href="#" id="cmdEditList" class="hidden-option">Edit List</a></li>
-                <li><a href="#" id="cmdLogout">Logout</a></li>
-            </ul>
-        </div>
 
         <div id="main">
-            
+            <Header/>
+
             <!-- User Module UI -->
             <div id="mUser">
-                
-                <!-- SignUp View -->
-                <div id="vSignUp" 
-                     class="view acrylic glass"
-                >
-                    <!-- Header -->
-                    <div>
-                        <span id="cmdSignUpClose" 
-                              class="cmdClose"
-                        >
-                            ❌
-                        </span>
-                    </div>
-
-                    <!-- Content: Title -->
-                    <img id="imgHandshake" 
-                         src="./assets/images/handshake.png" 
-                         alt="handshake_image"
-                    >
-                    <div>
-                        <h1 class="view-title">
-                            Sign Up
-                        </h1>
-                    </div>
-                    
-                    <hr/>
-
-                    <!-- View Form -->
-                    <div class="view-form">
-                        <form id="frmSignUp"
-                              action="POST"
-                        >
-
-                            <!-- First Name UI -->
-                            <p class="todos-form-control">
-                                <label for="txtSignUpFirstname">
-                                    Enter your First Name: 
-                                </label>
-                                <input id="txtSignUpFirstname" 
-                                       type="text" 
-                                       required 
-                                       maxlength="30"
-                                />
-                            </p>          
-                            
-                            <!-- Last Name UI -->
-                            <p class="todos-form-control">
-                                <label for="txtSignUpLastname">
-                                    Enter your Last Name: 
-                                </label>
-                                <input id="txtSignUpLastname" 
-                                       type="text" 
-                                       required 
-                                       maxlength="30"
-                                />
-                            </p>
-
-                            <!-- Email UI -->
-                            <p class="todos-form-control">
-                                <label for="txtSignUpEmail">
-                                    Enter your Email:
-                                </label>
-                                <input id="txtSignUpEmail" 
-                                       type="email" 
-                                       required 
-                                       maxlength="70"
-                                />
-                            </p>                         
-
-                            <!-- Username UI -->
-                            <p class="todos-form-control">
-                                <label for="txtSignUpUsername">
-                                    Select a Username: 
-                                </label>
-                                <input id="txtSignUpUsername" 
-                                       type="text" 
-                                       required 
-                                       maxlength="20"
-                                />
-                            </p>                          
-                            
-                            <!-- Password UI -->
-                            <p class="todos-form-control">
-                                <label for="txtSignUpPassword">
-                                    Create a Secure Password:
-                                </label>
-                                <input id="txtSignUpPassword" 
-                                       type="password" 
-                                       required 
-                                       maxlength="30"
-                                />
-                            </p>
-
-                            <!-- Terms and Conditions UI -->
-                            <div class="checkbox-container">
-                                <input id="chkSignUpTermsAndConditions" 
-                                       class="todos-checkbox" 
-                                       type="checkbox"
-                                >
-                                <label class="todos-checkbox-label" 
-                                       for="chkSignUpTermsAndConditions">
-                                       I Agree to the Terms of Use
-                                </label>
-                            </div>
-
-                            <!-- Terms and Conditions Errors -->
-                            <div id="signUpTermsAndConditionsError" 
-                                 class="form-error"
-                            >
-                                <span class="error-emotion">
-                                    😭
-                                </span>
-                                We need you to accept our terms.
-                            </div>
-                            
-                            <!-- Control Button Bar -->
-                            <div class="todos-bottom-buttons-container">
-                                <button type="reset" class="todos-button reset">
-                                    Reset
-                                </button>
-                                <button type="submit" class="todos-button submit">
-                                    Submit
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-
-                <!-- Login View -->
-                <div id="vLogIn" 
-                     class="view acrylic glass"
-                >
-                    <!-- Header -->
-                    <div>
-                        <span id="cmdLogInClose" 
-                              class="cmdClose"
-                        >
-                            ❌
-                        </span>
-                    </div>
-
-                    <!-- Content: Title -->
-                    <img id="imgLock" 
-                         src="./assets/images/lock.png" 
-                         alt="lock_image"
-                    >
-                    <div>
-                        <h1 class="view-title">
-                            Log In
-                        </h1>
-                    </div>
-
-                    <hr/>
-
-                    <!-- View Form -->
-                    <div class="view-form">
-                        <form id="frmLogIn"
-                              action="POST"
-                        >
-                            
-                            <!-- Username UI -->
-                            <p class="todos-form-control">
-                                <label for="txtLoginEmail">
-                                    Enter your Email:
-                                </label>
-                                <input id="txtLoginEmail"
-                                       type="email" 
-                                       required 
-                                       maxlength="50"
-                                />
-                            </p>                     
-
-                            <!-- Password UI -->
-                            <p class="todos-form-control">
-                                <label for="txtLoginPassword">
-                                    Enter your Password: 
-                                </label>
-                                <input id="txtLoginPassword" 
-                                       type="password" 
-                                       required 
-                                       maxlength="30"
-                                />
-                            </p>
-
-                            <!-- Terms and Conditions Errors -->
-                            <div id="logInPasswordError"
-                                 class="form-error"
-                            >
-                                <span class="error-emotion">
-                                    😒
-                                </span>
-                                Incorrect Password, try again
-                            </div>                            
-
-                            <!-- Control Button Bar -->
-                            <div class="todos-bottom-buttons-container">
-                                <button type="reset" class="todos-button reset">
-                                    Reset
-                                </button>
-                                <button type="submit" class="todos-button submit">
-                                    Submit
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-
-                </div>
-
+                <SignUp/>
+                <Login/>
             </div>
 
             <!-- Dashboard Module UI -->
-            <div id="mDashboard">
-                
-                <!-- Lists View -->
-                <div id="vLists" 
-                     class="view acrylic glass"
-                >
-                    <!-- Header -->
-                    <div>
-                        <span id="cmdListsClose" 
-                              class="cmdClose hidden-option"
-                        >
-                            ❌
-                        </span>
-                    </div>
-
-                    <!-- Content: Title -->
-                    <img id="imgTodoList" 
-                         src="./assets/images/todo-lists.png" 
-                         alt="todo-lists_image"
-                    >
-                    <div>
-                        <h1 class="view-title">
-                            Todo Lists
-                        </h1>
-                    </div>
-                    
-                    <hr/>
-
-                    <!-- Content: Body -->
-                    <div class="todos-list scrollbar" id="todosList">
-
-                    </div>
-                    <button id="cmdListsNewList" type="button" class="todos-button">
-                        New TODO List
-                    </button>
-                </div>
-
-
-                <!-- Add List View -->
-                <div id="vNewList" 
-                     class="view acrylic glass"
-                >
-                    <!-- Header -->
-                    <div>
-                        <span id="cmdNewListClose" 
-                              class="cmdClose"
-                        >
-                            ❌
-                        </span>
-                    </div>
-
-                    <!-- Content: Title -->
-                    <img id="imgCheckList" 
-                         src="./assets/images/checklist.png"
-                         alt="todo-lists_image"
-                    >
-                    <div>
-                        <h1 class="view-title">
-                            New ToDo List
-                        </h1>
-                    </div>
-                    
-                    <hr/>
-
-                    <!-- Content: Body -->
-                    <form id="frmNewList"
-                          action="POST"
-                    >
-                        <!-- ToDo Name UI -->
-                        <p class="todos-form-control">
-                            <label for="txtNewListName">
-                                Enter a Name for this List of ToDo's:
-                            </label>
-                            <input id="txtNewListName"
-                                    type="text" 
-                                    required 
-                                    maxlength="25"
-                            />
-                        </p> 
-
-                        <!-- List Exists Error -->
-                        <div id="newListValidationError"
-                                class="form-error"
-                        >
-                            <span class="error-emotion">
-                                😒
-                            </span>
-                            The List name exists, try another one.
-                        </div>  
-
-                        <!-- ToDo Description UI -->
-                        <p class="todos-form-control">
-                            <label for="txtNewListDescription">
-                                Enter a Description:
-                            </label>
-                            <input id="txtNewListDescription"
-                                    type="text" 
-                                    required 
-                                    maxlength="50"
-                            />
-                        </p>                         
-
-                        <!-- Control Button Bar -->
-                        <div class="todos-bottom-buttons-container">
-                            <button type="reset" class="todos-button reset">
-                                Reset
-                            </button>
-                            <button type="submit" class="todos-button submit">
-                                Save
-                            </button>
-                        </div>
-
-                    </form>
-
-                </div>
-
-
-                <!-- Edit List View -->
-                <div id="vEditList" 
-                     class="view acrylic glass"
-                >
-                    <!-- Header -->
-                    <div>
-                        <span id="cmdEditListClose" 
-                              class="cmdClose"
-                        >
-                            ❌
-                        </span>
-                    </div>
-
-                    <!-- Content: Title -->
-                    <img id="imgTakeNote" 
-                         src="./assets/images/take-note.png"
-                         alt="todo-lists_image"
-                    >
-                    <div>
-                        <h1 class="view-title">
-                            Edit ToDo List
-                        </h1>
-                    </div>
-                    
-                    <hr/>
-
-                    <!-- Content: Body -->
-                    <form id="frmEditList"
-                          action="POST"
-                    >
-                        <!-- ToDo Name UI -->
-                        <p class="todos-form-control">
-                            <label for="txtEditListName">
-                                Edit the List Name:
-                            </label>
-                            <input id="txtEditListName"
-                                    type="text" 
-                                    required 
-                                    maxlength="25"
-                            />
-                        </p> 
-
-                        <!-- List Empty Error -->
-                        <div id="editListEmptyError"
-                                class="form-error"
-                        >
-                            <span class="error-emotion">
-                                😒
-                            </span>
-                            The List name is empty! please enter one!
-                        </div> 
-                    
-
-                        <!-- Todo Items UI -->
-                        <div class="todos-list scrollbar" id="todoItemsList">
-                        </div>                        
-
-
-                        <!-- Control Button Bar -->
-                        <div class="todo-add-item-bottom-buttons-container">
-                            <button id="cmdAddNewTodoItem" type="button" class="todo-list-button submit">
-                                Add Todo Item
-                            </button>
-                        </div>
-
-                        <!-- Control Button Bar -->
-                        <div class="todos-bottom-buttons-container">
-                            <button type="reset" class="todos-button reset">
-                                Cancel
-                            </button>
-                            <button type="submit" class="todos-button submit">
-                                Save
-                            </button>
-                        </div>
-
-                    </form>
-
-                </div>
-
+            <div id="mDashboard">                
+                <Lists/>
+                <NewList/>
+                <EditList/>
             </div>
-
         </div>
 
-        <div id="footer" class="acrylic glass">
-            <span class="footer-left">
-                ©️ 2021 MIT License. Project 1 for ES6 Pirple Course by Will de la Vega.
-            </span>
-            <span class="footer-right">
-                https://willdelavega.com/portfolio
-            </span>
-        </div>
+        <Footer/>
+
     </body>
 </html>
