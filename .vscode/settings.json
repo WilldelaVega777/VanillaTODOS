@@ -1,4 +1,7 @@
 {
-    "liveServer.settings.multiRootWorkspaceName": "Project_1",
-    "workbench.colorTheme": "Material Theme Ocean High Contrast"
+  "liveServer.settings.multiRootWorkspaceName": "Project_1",
+  "workbench.colorTheme": "Material Theme Ocean High Contrast",
+  "evenBetterToml.schema.associations": {
+    ".*netlify\\.toml": "./.netlify/netlify.toml.schema.json"
+  }
 }

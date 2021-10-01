@@ -79,7 +79,7 @@ const editList = (element) =>
                 </button>
             </div>
 
-        </form>       
+        </form>
     `;
 }
 
